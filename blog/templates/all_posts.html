@@ -2,14 +2,15 @@
 
 {% block title %}All_Posts - Homepage {% endblock %}
 
-{% block content %}
-<h3>All Posts</h3>
+{% block heading %} All Posts {% endblock %}
 
+{% block content %}
 <ul>
 	{% for post in post_list %}
 	<li>
 		<div class="post-entry">
-			<h4>{{ post.title }}</h4>
+			{% comment %} hardcoded ref = post/{{post.pk}} {% endcomment %}
+			<h4><a href="{% url 'post' post.pk %}">{{ post.title }}</a></h4>
 			<p>----Author: {{ post.author }}</p>
 			<p>{{ post.body }}</p>
 		</div>

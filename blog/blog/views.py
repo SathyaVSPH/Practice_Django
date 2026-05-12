@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.views.generic import ListView
 from . import models
 
@@ -10,3 +10,8 @@ from . import models
 class AllPosts(ListView):
 	model = models.Post
 	template_name = "all_posts.html"	 
+
+
+def post_details(request, pk):
+	post = get_object_or_404(models.Post, pk=pk)
+	return render(request, "post_page.html", {"post":post})

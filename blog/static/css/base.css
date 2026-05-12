@@ -1,0 +1,10 @@
+* {
+	font-family: "Google Sans Flex", sans-serif;
+}
+
+h2 {
+	color: red;
+}
+.post-entry h2, h4 {
+	color: blue;
+}
