@@ -1,0 +1,20 @@
+{% extends "layout.html" %}
+
+{% block title %}All_Posts - Homepage {% endblock %}
+
+{% block content %}
+<h3>All Posts</h3>
+
+<ul>
+	{% for post in post_list %}
+	<li>
+		<div class="post-entry">
+			<h4>{{ post.title }}</h4>
+			<p>----Author: {{ post.author }}</p>
+			<p>{{ post.body }}</p>
+		</div>
+	</li>
+	<br>
+	{% endfor %}
+</ul>
+{% endblock %}
