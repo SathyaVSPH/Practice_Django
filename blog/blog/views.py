@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView
 from . import models
 
 # Create your views here.
@@ -12,6 +12,9 @@ class AllPosts(ListView):
 	template_name = "all_posts.html"	 
 
 
-def post_details(request, pk):
+""" def post_details(request, pk):
 	post = get_object_or_404(models.Post, pk=pk)
-	return render(request, "post_page.html", {"post":post})
+	return render(request, "post_page.html", {"post":post}) """
+class PostPage(DetailView):
+	model = models.Post
+	template_name = "post_page.html"
