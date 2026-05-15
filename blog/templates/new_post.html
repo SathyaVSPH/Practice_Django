@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Create New Post
+{% endblock %}
+
+{% block heading %}
+    New Post
+{% endblock %}
+
+{% block content %}
+    <form action="" method="post">
+        {% csrf_token %}
+        {{ form }}
+        <input type="submit" value="Save">
+    </form>
+{% endblock %}

@@ -11,4 +11,8 @@
 			<p>----Author: {{ post.author }}</p>
 			<p>{{ post.body }}</p>
 		</div>
+	<br>
+	<a href="{% url 'update_post' post.pk %}">➕Edit Post</a>
+	<br>
+	<a href="{% url 'delete_post' post.pk %}">➖Delete Post</a>
 {% endblock %}

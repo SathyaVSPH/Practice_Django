@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Delete {{ post.title }} ?
+{% endblock %}
+
+{% block heading %}
+    Delete Post!
+{% endblock %}
+
+{% block content %}
+    <form action="" method="post">
+        {% csrf_token %}
+        <p>Are you sure to delete the post "{{ post.title }}"?</p>
+        <input type="submit" value="DELETE">
+    </form>
+{% endblock %}

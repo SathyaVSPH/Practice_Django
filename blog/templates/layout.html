@@ -12,7 +12,19 @@
 	</head>
 	<body>
 		<nav>
-			<a href="{% url 'home' %}">🏠Home</a>
+			{% url 'home' as excluded %}
+			{% if request.path != excluded %}
+			<div class="nav-left">
+				<a href="{% url 'home' %}">🏠Home</a>
+			</div>
+			{% endif %}
+
+			{% url 'create_post' as excluded %}
+			{% if request.path != excluded %}
+			<div class="nav-right">
+				<a href="{% url 'create_post' %}">📄✍️New Post</a>
+			</div>
+			{% endif %}
 		</nav>
 		<h2>
 			{% block heading %}{% endblock %}

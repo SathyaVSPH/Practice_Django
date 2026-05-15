@@ -1,5 +1,7 @@
-from django.shortcuts import render, get_object_or_404
+# from django.shortcuts import render, get_object_or_404
 from django.views.generic import ListView, DetailView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.urls import reverse_lazy
 from . import models
 
 # Create your views here.
@@ -18,3 +20,21 @@ class AllPosts(ListView):
 class PostPage(DetailView):
 	model = models.Post
 	template_name = "post_page.html"
+
+
+class CreatePost(CreateView):
+	model = models.Post
+	template_name = "new_post.html"
+	fields = ["title", "author", "body"]
+
+
+class UpdatePost(UpdateView):
+	model = models.Post
+	template_name = "update_post.html"
+	fields = ["title", "body"]
+
+
+class DeletePost(DeleteView):
+	model = models.Post
+	template_name = "delete_post.html"
+	success_url = reverse_lazy("home")

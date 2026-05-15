@@ -46,3 +46,27 @@ class BlogTests(TestCase):
         self.assertEqual(no_response.status_code, 404) #404 check
         self.assertContains(response, "Just a title")# template content check
         self.assertTemplateUsed(response, "post_page.html")#template file check
+    
+    def test_create_post(self):
+        response = self.client.post(
+            reverse("create_post"),
+                    {"title": "New Post",
+                     "body": "Testing Post",
+                     "author": self.user.id})
+        self.assertEqual(response.status_code, 302) # Checks form submitted successfully
+        self.assertEqual(models.Post.objects.last().title, "New Post")
+        self.assertEqual(models.Post.objects.last().body, "Testing Post")
+    
+    def test_update_post(self):
+        response = self.client.post(
+            reverse("update_post", args="1"),
+                    {"title": "Updated Post",
+                     "body": "Updated Body"})
+        self.assertEqual(response.status_code, 302)
+        self.assertEqual(models.Post.objects.last().title, "Updated Post")
+        self.assertEqual(models.Post.objects.last().body, "Updated Body")
+    
+    def test_delete_post(self):
+        response = self.client.post(
+            reverse("delete_post", args="1"))
+        self.assertEqual(response.status_code, 302)
