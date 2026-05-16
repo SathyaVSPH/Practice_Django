@@ -26,6 +26,21 @@
 			</div>
 			{% endif %}
 		</nav>
+			{% if user.is_authenticated %}
+				<p>Welcome {{ user.username }}!</p>
+				<form action="{% url 'logout' %}" method="post">
+					{% csrf_token %}
+					<button type="submit"> Logout </button>
+				</form>
+			{% else %}
+				{% url 'login' as address %}
+				{% if request.path != address %}
+					<p>You're not logged in.</p>
+					Click here to <a href="{% url 'login' %}">Login</a>.
+				{% endif %}
+			{% endif %}
+			
+
 		<h2>
 			{% block heading %}{% endblock %}
 		</h2>
